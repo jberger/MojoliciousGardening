@@ -21,14 +21,13 @@ app->start;
 
 __DATA__
 
-@@ map.html.ep
-% layout 'leaflet';
+@@ pushpin.js
 
-<div id="mapid" style="width: 800px; height: 600px;"></div>
-<script>
+var pins = [];
+var map;
 
-(function(){
-  var map = L.map('mapid');
+export function initMap() {
+  map = L.map('mapid');
   map.doubleClickZoom.disable();
   var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -49,39 +48,41 @@ __DATA__
         text: text,
       }),
     }).then(() => getPins());
-    console.log("TODO store");
   });
 
-  {
-    let pins = [];
-
-    function getPins() {
-      fetch('/pins')
-        .then(res => res.json())
-        .then(data => {
-          var points = [];
-          data.forEach(item => {
-            var point = L.latLng(item.lat, item.lng);
-            points.push(point);
-            var pin = L.marker(point).addTo(map);
-            if (item.text) pin.bindPopup(item.text);
-            pins.push(pin);
-          });
-          map.fitBounds(L.latLngBounds(points), {maxZoom: 12});
-        });
-    }
-
-    function removePins() {
-      pins.forEach(pin => pin.remove());
-    }
-  }
-
   getPins();
-})();
+}
 
+export function getPins() {
+  removePins();
+  fetch('/pins')
+    .then(res => res.json())
+    .then(data => {
+      var points = [];
+      data.forEach(item => {
+        var point = L.latLng(item.lat, item.lng);
+        points.push(point);
+        var pin = L.marker(point).addTo(map);
+        if (item.text) pin.bindPopup(item.text);
+        pins.push(pin);
+      });
+      map.fitBounds(L.latLngBounds(points), {maxZoom: 12});
+    });
+}
 
+export function removePins() {
+  pins.forEach(pin => pin.remove());
+}
+
+@@ map.html.ep
+% layout 'leaflet';
+
+<div id="mapid" style="width: 800px; height: 600px;"></div>
+<script type="module">
+  import { initMap } from './pushpin.js';
+
+  initMap();
 </script>
-
 
 
 @@ layouts/leaflet.html.ep

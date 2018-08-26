@@ -1,7 +1,7 @@
 % layout 'main';
 
 <table>
-  % for my $pin (all_pins->each) {
+  % for my $pin (pins->each) {
   <tr>
     %= t td => $pin->{lat}
     %= t td => $pin->{lng}

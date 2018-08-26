@@ -3,7 +3,7 @@ use Mojolicious::Lite -signatures;
 use Mojo::SQLite;
 
 # reveal begin config
-my $config = plugin Config => {
+my $conf = plugin Config => {
   default => {
     db => 'pushpin.db',
     admin => 'bender',
@@ -12,11 +12,11 @@ my $config = plugin Config => {
 # reveal end config
 
 # reveal begin sqlite
-my $sqlite = Mojo::SQLite->new($config->{db})->auto_migrate(1);
+my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
 helper db => sub { $sqlite->db };
 
-helper all_pins => sub ($c) { $c->db->select('pins')->hashes };
+helper pins => sub ($c) { $c->db->select('pins')->hashes };
 # reveal end sqlite
 
 # reveal begin basic_auth
@@ -28,7 +28,7 @@ helper basic_auth => sub ($c) {
 # reveal end basic_auth
 
 # reveal begin routes_pins
-get '/pins' => sub ($c) { $c->render(json => $c->all_pins) };
+get '/pins' => sub ($c) { $c->render(json => $c->pins) };
 
 post '/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
@@ -41,7 +41,7 @@ group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
     my $pw = $c->req->url->to_abs->password;
-    return $c->session(admin => 1) if $pw eq $config->{admin};
+    return $c->session(admin => 1) if $pw eq $conf->{admin};
     return $c->basic_auth;
   };
 
@@ -55,7 +55,9 @@ group {
 # reveal end routes_admin
 
 # reveal begin routes_final
-any '/logout' => sub ($c) { $c->session(expires => 1)->basic_auth };
+any '/logout' => sub ($c) {
+  $c->session(expires => 1)->basic_auth;
+};
 
 any '/*any' => {any => ''} => 'map';
 # reveal end routes_final
@@ -134,7 +136,7 @@ export function removePins() {
 % layout 'main';
 
 <table>
-  % for my $pin (all_pins->each) {
+  % for my $pin (pins->each) {
   <tr>
     %= t td => $pin->{lat}
     %= t td => $pin->{lng}

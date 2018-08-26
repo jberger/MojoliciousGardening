@@ -4,18 +4,18 @@ use Mojo::SQLite;
 
 my $app = app;
 
-my $config = $app->plugin(Config => {
+my $conf = $app->plugin(Config => {
   default => {
     db => 'pushpin.db',
     admin => 'bender',
   },
 });
 
-my $sqlite = Mojo::SQLite->new($config->{db})->auto_migrate(1);
+my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
 $app->helper(db => sub { $sqlite->db });
 
-$app->helper(all_pins => sub ($c) { $c->db->select('pins')->hashes });
+$app->helper(pins => sub ($c) { $c->db->select('pins')->hashes });
 
 $app->helper(basic_auth => sub ($c) {
   $c->res->headers->www_authenticate('Basic realm=pushpin');
@@ -25,7 +25,7 @@ $app->helper(basic_auth => sub ($c) {
 
 my $r = $app->routes;
 
-$r->get('/pins' => sub ($c) { $c->render(json => $c->all_pins) });
+$r->get('/pins' => sub ($c) { $c->render(json => $c->pins) });
 
 $r->post('/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
@@ -35,7 +35,7 @@ $r->post('/pins' => sub ($c) {
 my $admin = $r->under('/admin' => sub ($c) {
   return 1 if $c->session('admin');
   my $pw = $c->req->url->to_abs->password;
-  return $c->session(admin => 1) if $pw eq $config->{admin};
+  return $c->session(admin => 1) if $pw eq $conf->{admin};
   return $c->basic_auth;
 });
 
@@ -46,7 +46,9 @@ $admin->delete('/:id' => sub ($c) {
   $c->redirect_to('table');
 } => 'remove');
 
-$r->any('/logout' => sub ($c) { $c->session(expires => 1)->basic_auth });
+$r->any('/logout' => sub ($c) {
+  $c->session(expires => 1)->basic_auth;
+});
 
 $r->any('/*any' => {any => ''} => 'map');
 
@@ -124,7 +126,7 @@ export function removePins() {
 % layout 'main';
 
 <table>
-  % for my $pin (all_pins->each) {
+  % for my $pin (pins->each) {
   <tr>
     %= t td => $pin->{lat}
     %= t td => $pin->{lng}

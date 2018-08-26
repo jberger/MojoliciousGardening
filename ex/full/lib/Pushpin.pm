@@ -4,8 +4,8 @@ use Mojo::Base 'Mojolicious', -signatures;
 use Mojo::SQLite;
 
 has sqlite => sub ($app) {
-  my $config = $app->config;
-  my $sqlite = Mojo::SQLite->new($config->{db})->auto_migrate(1);
+  my $conf = $app->config;
+  my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
   $sqlite->migrations->from_data;
   return $sqlite;
 };
@@ -20,7 +20,7 @@ sub startup ($app) {
 
   $app->helper(db => sub ($c) { $c->app->sqlite->db });
 
-  $app->helper(all_pins => sub ($c) { $c->db->select('pins')->hashes });
+  $app->helper(pins => sub ($c) { $c->db->select('pins')->hashes });
 
   my $r = $app->routes;
 

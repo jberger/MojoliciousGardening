@@ -2,7 +2,14 @@ use Mojolicious::Lite -signatures;
 
 use Mojo::SQLite;
 
-my $sqlite = Mojo::SQLite->new('pushpin.db')->auto_migrate(1);
+my $config = plugin Config => {
+  default => {
+    db => 'pushpin.db',
+    admin => 'bender',
+  },
+};
+
+my $sqlite = Mojo::SQLite->new($config->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
 helper db => sub { $sqlite->db };
 
@@ -24,7 +31,7 @@ post '/pins' => sub ($c) {
 group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
-    return $c->session(admin => 1) if $c->req->url->to_abs->username eq 'bender';
+    return $c->session(admin => 1) if $c->req->url->to_abs->username eq $config->{admin};
     return $c->basic_auth;
   };
 

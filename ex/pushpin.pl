@@ -17,7 +17,13 @@ post '/pins' => sub ($c) {
 };
 
 group {
-  under '/admin' => sub { 1 };
+  under '/admin' => sub ($c) {
+    return 1 if $c->session('admin');
+    return $c->session(admin => 1) if $c->req->url->to_abs->username eq 'bender';
+    $c->res->headers->www_authenticate('Basic realm=pushpin');
+    $c->rendered(401);
+    return 0;
+  };
 
   get '/' => 'admin';
 
@@ -26,6 +32,8 @@ group {
     $c->redirect_to('admin');
   } => 'remove';
 };
+
+any '/logout' => sub ($c) { $c->session(expires => 1)->redirect_to('map') };
 
 any '/*any' => {any => ''} => 'map';
 

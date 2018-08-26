@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MojoConf Pushpin</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  %= content_for 'head'
+</head>
+<body><%= content %></body>
+</html>
+
+

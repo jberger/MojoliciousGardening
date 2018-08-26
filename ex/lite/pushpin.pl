@@ -117,7 +117,6 @@ export function removePins() {
   initMap();
 </script>
 
-
 @@ layouts/main.html.ep
 <!DOCTYPE html>
 <html>

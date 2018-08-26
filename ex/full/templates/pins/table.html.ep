@@ -1,0 +1,18 @@
+% layout 'main';
+
+<table>
+  % for my $pin (all_pins->each) {
+  <tr>
+    %= t td => $pin->{lat}
+    %= t td => $pin->{lng}
+    %= t td => $pin->{text}
+    <td>
+    %= form_for remove => {id => $pin->{id}} => begin
+      %= submit_button 'remove'
+    % end
+    </td>
+  </tr>
+  % }
+</table>
+
+

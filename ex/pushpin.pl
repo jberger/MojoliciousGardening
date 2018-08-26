@@ -8,6 +8,12 @@ helper db => sub { $sqlite->db };
 
 helper all_pins => sub ($c) { $c->db->select('pins')->hashes };
 
+helper basic_auth => sub ($c) {
+  $c->res->headers->www_authenticate('Basic realm=pushpin');
+  $c->rendered(401);
+  return 0;
+};
+
 get '/pins' => sub ($c) { $c->render(json => $c->all_pins) };
 
 post '/pins' => sub ($c) {
@@ -19,9 +25,7 @@ group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
     return $c->session(admin => 1) if $c->req->url->to_abs->username eq 'bender';
-    $c->res->headers->www_authenticate('Basic realm=pushpin');
-    $c->rendered(401);
-    return 0;
+    return $c->basic_auth;
   };
 
   get '/' => 'admin';
@@ -32,7 +36,7 @@ group {
   } => 'remove';
 };
 
-any '/logout' => sub ($c) { $c->session(expires => 1)->redirect_to('map') };
+any '/logout' => sub ($c) { $c->session(expires => 1)->basic_auth };
 
 any '/*any' => {any => ''} => 'map';
 

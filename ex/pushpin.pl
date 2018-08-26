@@ -4,7 +4,6 @@ use Mojo::SQLite;
 
 my $sqlite = Mojo::SQLite->new('pushpin.db')->auto_migrate(1);
 $sqlite->migrations->from_data;
-
 helper db => sub { $sqlite->db };
 
 helper all_pins => sub ($c) { $c->db->select('pins')->hashes };
@@ -104,7 +103,6 @@ export function removePins() {
 <div id="mapid" style="width: 800px; height: 600px;"></div>
 <script type="module">
   import { initMap } from './pushpin.js';
-
   initMap();
 </script>
 
@@ -113,37 +111,19 @@ export function removePins() {
 <!DOCTYPE html>
 <html>
 <head>
-
   <title>MojoConf Pushpin</title>
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!--link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /-->
-
   %= content_for 'head'
-
 </head>
-<body>
-
-%= content
-
-
-</body>
+<body><%= content %></body>
 </html>
 
 @@ admin.html.ep
 % layout 'main';
 
 <table>
-  <thead>
-    <th>Lat</th>
-    <th>Lng</th>
-    <th>Text</th>
-    <th>Action</th>
-  </thead>
-  <tbody>
-% for my $pin (all_pins->each) {
+  % for my $pin (all_pins->each) {
   <tr>
     %= t td => $pin->{lat}
     %= t td => $pin->{lng}
@@ -154,8 +134,7 @@ export function removePins() {
     % end
     </td>
   </tr>
-% }
-  </tbody>
+  % }
 </table>
 
 @@ migrations

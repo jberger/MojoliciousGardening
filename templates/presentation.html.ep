@@ -1,0 +1,137 @@
+<style>
+  .reveal pre code { padding: 20px }
+  code.hljs.inline {
+    display: initial;
+    font-size: 80%;
+    margin: 0 10px 0 10px;
+  }
+</style>
+
+<section>
+
+  <h1>Mojolicious Gardening</h1>
+
+  <p>
+    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="unicorn_gnome.jpg"></a>
+  </p>
+
+</section>
+
+<section>
+
+  <h2>About this talk</h2>
+
+  <ul>
+    <li>I first gave this talk at MojoConf September 2018</li>
+    <li>The talk is hosted at <a href="http://jberger.github.io/MojoliciousGardening" target="_blank">http://jberger.github.io/MojoliciousGardening</a></li>
+    <li>The source is available at <a href="https://github.com/jberger/MojoliciousGardening" target="_blank">https://github.com/jberger/MojoliciousGardening</a></li>
+    <!--li>All code samples and all tests:
+      <ul>
+        <li>are complete and run as shown</li>
+        <li>are included in the repository</li>
+      </ul>
+    </li-->
+  </ul>
+
+</section>
+
+%= markdown_slide begin
+  ## Don't Fear the Full App!
+
+  Lite is just a thin wrapper
+% end
+
+%= markdown_slide begin
+  ## Get Help
+
+  - [Growing Guide](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
+  - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
+% end
+
+%= markdown_slide begin
+  ## The Script
+
+% end
+
+%= markdown_slide begin
+  ## App Keywords
+
+  - app
+  - helper
+  - hook
+  - plugin
+
+% end
+
+%= markdown_slide begin
+  ## Routing Keywords
+
+  - any
+  - del (as delete)
+  - get
+  - options
+  - patch
+  - post
+  - put
+  - websocket
+
+% end
+
+%= markdown_slide begin
+  ## Nested routing
+
+  - under
+  - group
+
+% end
+
+%= markdown_slide begin
+  ## Supporting Files
+
+  - templates
+  - static files
+
+% end
+
+<section>
+
+  <section>
+    <h2>Pushpin Application</h2>
+
+    %= include_code 'ex/lite/pushpin.pl'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'config'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'sqlite'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'basic_auth'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_pins'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_admin'
+  </section>
+
+  <section>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_final'
+  </section>
+
+  %= markdown_slide begin
+    ## `__DATA__` Files
+
+    - pushpin.js
+    - map.html.ep
+    - table.html.ep
+    - layouts/main.html.ep
+    - migrations
+  % end
+</section>

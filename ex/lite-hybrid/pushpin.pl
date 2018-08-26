@@ -34,7 +34,8 @@ $r->post('/pins' => sub ($c) {
 
 my $admin = $r->under('/admin' => sub ($c) {
   return 1 if $c->session('admin');
-  return $c->session(admin => 1) if $c->req->url->to_abs->username eq $config->{admin};
+  my $pw = $c->req->url->to_abs->password;
+  return $c->session(admin => 1) if $pw eq $config->{admin};
   return $c->basic_auth;
 });
 
@@ -119,18 +120,6 @@ export function removePins() {
   initMap();
 </script>
 
-@@ layouts/main.html.ep
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MojoConf Pushpin</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  %= content_for 'head'
-</head>
-<body><%= content %></body>
-</html>
-
 @@ table.html.ep
 % layout 'main';
 
@@ -148,6 +137,18 @@ export function removePins() {
   </tr>
   % }
 </table>
+
+@@ layouts/main.html.ep
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MojoConf Pushpin</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  %= content_for 'head'
+</head>
+<body><%= content %></body>
+</html>
 
 @@ migrations
 -- 1 up

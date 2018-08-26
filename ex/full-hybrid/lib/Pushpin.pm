@@ -34,7 +34,8 @@ sub startup ($app) {
 
   my $admin = $r->under('/admin' => sub ($c) {
     return 1 if $c->session('admin');
-    return $c->session(admin => 1) if $c->req->url->to_abs->username eq $config->{admin};
+    my $pw = $c->req->url->to_abs->password;
+    return $c->session(admin => 1) if $pw eq $config->{admin};
     return $c->basic_auth;
   });
 

@@ -5,7 +5,8 @@ use Mojo::Base 'Mojolicious::Controller', -signatures;
 sub check ($c) {
   return 1 if $c->session('admin');
   my $config = $c->app->config;
-  return $c->session(admin => 1) if $c->req->url->to_abs->username eq $config->{admin};
+  my $pw = $c->req->url->to_abs->password;
+  return $c->session(admin => 1) if $pw eq $config->{admin};
   return $c->_basic_auth;
 }
 

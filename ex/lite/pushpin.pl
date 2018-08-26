@@ -2,36 +2,46 @@ use Mojolicious::Lite -signatures;
 
 use Mojo::SQLite;
 
+# reveal begin config
 my $config = plugin Config => {
   default => {
     db => 'pushpin.db',
     admin => 'bender',
   },
 };
+# reveal end config
 
+# reveal begin sqlite
 my $sqlite = Mojo::SQLite->new($config->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
 helper db => sub { $sqlite->db };
 
 helper all_pins => sub ($c) { $c->db->select('pins')->hashes };
+# reveal end sqlite
 
+# reveal begin basic_auth
 helper basic_auth => sub ($c) {
   $c->res->headers->www_authenticate('Basic realm=pushpin');
   $c->rendered(401);
   return 0;
 };
+# reveal end basic_auth
 
+# reveal begin routes_pins
 get '/pins' => sub ($c) { $c->render(json => $c->all_pins) };
 
 post '/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
   $c->rendered(204);
 };
+# reveal end routes_pins
 
+# reveal begin routes_admin
 group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
-    return $c->session(admin => 1) if $c->req->url->to_abs->username eq $config->{admin};
+    my $pw = $c->req->url->to_abs->password;
+    return $c->session(admin => 1) if $pw eq $config->{admin};
     return $c->basic_auth;
   };
 
@@ -42,10 +52,13 @@ group {
     $c->redirect_to('table');
   } => 'remove';
 };
+# reveal end routes_admin
 
+# reveal begin routes_final
 any '/logout' => sub ($c) { $c->session(expires => 1)->basic_auth };
 
 any '/*any' => {any => ''} => 'map';
+# reveal end routes_final
 
 app->start;
 
@@ -117,18 +130,6 @@ export function removePins() {
   initMap();
 </script>
 
-@@ layouts/main.html.ep
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MojoConf Pushpin</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  %= content_for 'head'
-</head>
-<body><%= content %></body>
-</html>
-
 @@ table.html.ep
 % layout 'main';
 
@@ -146,6 +147,18 @@ export function removePins() {
   </tr>
   % }
 </table>
+
+@@ layouts/main.html.ep
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MojoConf Pushpin</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  %= content_for 'head'
+</head>
+<body><%= content %></body>
+</html>
 
 @@ migrations
 -- 1 up

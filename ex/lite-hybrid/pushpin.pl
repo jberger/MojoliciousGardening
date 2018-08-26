@@ -38,11 +38,11 @@ my $admin = $r->under('/admin' => sub ($c) {
   return $c->basic_auth;
 });
 
-$admin->get('/' => 'admin');
+$admin->get('/' => 'table');
 
 $admin->delete('/:id' => sub ($c) {
   $c->db->delete(pins => { id => $c->param('id') });
-  $c->redirect_to('admin');
+  $c->redirect_to('table');
 } => 'remove');
 
 $r->any('/logout' => sub ($c) { $c->session(expires => 1)->basic_auth });
@@ -131,7 +131,7 @@ export function removePins() {
 <body><%= content %></body>
 </html>
 
-@@ admin.html.ep
+@@ table.html.ep
 % layout 'main';
 
 <table>

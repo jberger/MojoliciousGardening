@@ -35,11 +35,11 @@ group {
     return $c->basic_auth;
   };
 
-  get '/' => 'admin';
+  get '/' => 'table';
 
   del '/:id' => sub ($c) {
     $c->db->delete(pins => { id => $c->param('id') });
-    $c->redirect_to('admin');
+    $c->redirect_to('table');
   } => 'remove';
 };
 
@@ -129,7 +129,7 @@ export function removePins() {
 <body><%= content %></body>
 </html>
 
-@@ admin.html.ep
+@@ table.html.ep
 % layout 'main';
 
 <table>

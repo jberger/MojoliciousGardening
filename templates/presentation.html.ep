@@ -35,25 +35,25 @@
 
 </section>
 
-%= markdown_slide begin
+%= markdown_section begin
   ## Don't Fear the Full App!
 
   Lite is just a thin wrapper
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## Get Help
 
   - [Growing Guide](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
   - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## The Script
 
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## App Keywords
 
   - app
@@ -63,7 +63,7 @@
 
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## Routing Keywords
 
   - any
@@ -77,7 +77,7 @@
 
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## Nested routing
 
   - under
@@ -85,7 +85,7 @@
 
 % end
 
-%= markdown_slide begin
+%= markdown_section begin
   ## Supporting Files
 
   - templates
@@ -125,7 +125,7 @@
     %= include_code 'ex/lite/pushpin.pl' => section => 'routes_final'
   </section>
 
-  %= markdown_slide begin
+  %= markdown_section begin
     ## `__DATA__` Files
 
     - pushpin.js
@@ -134,4 +134,24 @@
     - layouts/main.html.ep
     - migrations
   % end
+</section>
+
+<section>
+  %= markdown_section begin
+    ## Before The Move
+
+    ### The Lite-Hybrid App
+  % end
+
+  %= markdown_section begin
+    ## Purpose
+
+    - Transition away from the DSL
+    - Prepare for moving to Full
+  % end
+
+  <section>
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'app', include_filename => 0
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'router'
+  </section>
 </section>

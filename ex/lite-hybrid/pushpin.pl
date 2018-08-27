@@ -2,7 +2,9 @@ use Mojolicious::Lite -signatures;
 
 use Mojo::SQLite;
 
+# reveal begin app
 my $app = app;
+# reveal end app
 
 my $conf = $app->plugin(Config => {
   default => {
@@ -23,7 +25,9 @@ $app->helper(basic_auth => sub ($c) {
   return 0;
 });
 
+# reveal begin router
 my $r = $app->routes;
+# reveal end router
 
 $r->get('/pins' => sub ($c) { $c->render(json => $c->pins) });
 

@@ -15,6 +15,7 @@ my $conf = $app->plugin(Config => {
 
 my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
+# reveal begin helpers
 $app->helper(db => sub { $sqlite->db });
 
 $app->helper(pins => sub ($c) { $c->db->select('pins')->hashes });
@@ -24,18 +25,22 @@ $app->helper(basic_auth => sub ($c) {
   $c->rendered(401);
   return 0;
 });
+# reveal end helpers
 
 # reveal begin router
 my $r = $app->routes;
 # reveal end router
 
+# reveal begin routes_pins
 $r->get('/pins' => sub ($c) { $c->render(json => $c->pins) });
 
 $r->post('/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
   $c->rendered(204);
 });
+# reveal end routes_pins
 
+# reveal begin routes_admin
 my $admin = $r->under('/admin' => sub ($c) {
   return 1 if $c->session('admin');
   my $pw = $c->req->url->to_abs->password;
@@ -49,12 +54,15 @@ $admin->delete('/:id' => sub ($c) {
   $c->db->delete(pins => { id => $c->param('id') });
   $c->redirect_to('table');
 } => 'remove');
+# reveal end routes_admin
 
+# reveal begin routes_final
 $r->any('/logout' => sub ($c) {
   $c->session(expires => 1)->basic_auth;
 });
 
 $r->any('/*any' => {any => ''} => 'map');
+# reveal end routes_final
 
 app->start;
 

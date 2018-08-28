@@ -110,7 +110,7 @@
   </section>
 
   <section>
-    %= include_code 'ex/lite/pushpin.pl' => section => 'basic_auth'
+    %= include_code 'ex/lite/pushpin.pl' => section => 'helpers'
   </section>
 
   <section>
@@ -153,5 +153,25 @@
   <section>
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'app', include_filename => 0
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'router'
+  </section>
+
+  <section>
+    <h3> Helper keyword ...</h3>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'helpers'
+  </section>
+  <section>
+    <h3>... becomes helper method</h3>
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'helpers'
+  </section>
+
+  <section>
+    <h3>And toplevel routes ...</h3>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_pins', include_filename => 0
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_final'
+  </section>
+  <section>
+    <h3>... are created by router methods</h3>
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_pins', include_filename => 0
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_final'
   </section>
 </section>

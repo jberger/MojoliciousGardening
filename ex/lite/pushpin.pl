@@ -14,18 +14,18 @@ my $conf = plugin Config => {
 # reveal begin sqlite
 my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
+# reveal end sqlite
+# reveal begin helpers
 helper db => sub { $sqlite->db };
 
 helper pins => sub ($c) { $c->db->select('pins')->hashes };
-# reveal end sqlite
 
-# reveal begin basic_auth
 helper basic_auth => sub ($c) {
   $c->res->headers->www_authenticate('Basic realm=pushpin');
   $c->rendered(401);
   return 0;
 };
-# reveal end basic_auth
+# reveal end helpers
 
 # reveal begin routes_pins
 get '/pins' => sub ($c) { $c->render(json => $c->pins) };

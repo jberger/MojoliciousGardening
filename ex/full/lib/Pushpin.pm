@@ -3,12 +3,14 @@ use Mojo::Base 'Mojolicious', -signatures;
 
 use Mojo::SQLite;
 
+# reveal begin sqlite
 has sqlite => sub ($app) {
   my $conf = $app->config;
   my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
   $sqlite->migrations->from_data;
   return $sqlite;
 };
+# reveal end sqlite
 
 sub startup ($app) {
   $app->plugin(Config => {
@@ -24,6 +26,7 @@ sub startup ($app) {
 
   my $r = $app->routes;
 
+  # reveal begin routes
   $r->get('/pins')->to('Pins#all');
   $r->post('/pins')->to('Pins#create');
 
@@ -33,6 +36,7 @@ sub startup ($app) {
 
   $r->any('/logout')->to('Admin#logout');
   $r->any('/*any' => {any => ''})->to('Pins#map')->name('map');
+  # reveal end routes
 }
 
 1;

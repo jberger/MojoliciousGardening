@@ -288,3 +288,37 @@
     %= include_code 'ex/full-hybrid/script/pushpin'
   </section>
 </section>
+
+<section>
+  %= markdown_section begin
+    ## Finally, the Full App
+
+    - Controller classes
+    - Routes point to controllers
+    - Templates in per-controller directories
+    - Application attributes
+    - Some helpers can be controller methods
+  % end
+  %= markdown_section begin
+    ## Supporting Files
+
+    - public/pushpin.js
+    - templates/pins/map.html.ep
+    - templates/pins/table.html.ep
+    - templates/layouts/main.html.ep
+  % end
+  <section>
+    % my $out = include_code 'ex/full/lib/Pushpin.pm', section => 'routes';
+    % $out =~ s/^\h*//gms;
+    %== $out
+  </section>
+  <section>
+    %= include_code 'ex/full/lib/Pushpin.pm', section => 'sqlite'
+  </section>
+  <section>
+    %= include_code 'ex/full/lib/Pushpin/Controller/Admin.pm', section => 'main'
+  </section>
+  <section>
+    %= include_code 'ex/full/lib/Pushpin/Controller/Pins.pm', section => 'main'
+  </section>
+</section>

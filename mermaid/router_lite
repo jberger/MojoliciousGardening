@@ -1,0 +1,6 @@
+graph TD
+A[/] -->|get '/foo'| B[GET /foo]
+A --> |post '/bar'| C[POST /bar]
+A --> |under '/admin'| D{ANY /admin}
+D --> |get '/safe'| E[GET /admin/safe]
+D --> |get '/lock'| F[GET /admin/lock]

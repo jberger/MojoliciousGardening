@@ -164,6 +164,7 @@
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'helpers'
   </section>
 
+  <!-- TODO: mention hybrid routes taking same arguments as keyword form -->
   <section>
     <h3>And toplevel routes ...</h3>
     %= include_code 'ex/lite/pushpin.pl' => section => 'routes_pins', include_filename => 0
@@ -173,5 +174,58 @@
     <h3>... are created by router methods</h3>
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_pins', include_filename => 0
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_final'
+  </section>
+</section>
+
+<section>
+  %= markdown_section begin
+    ## Nested Routing
+
+    - routes are a tree
+    - routing keywords (except under/group)
+      * add routes to the current router
+      * are all "leaf nodes"
+  % end
+  %= markdown_section begin
+    ## Nested Routing
+
+    - `under`
+      * replaces the current router
+      * creates an "inner node"
+      * conditionally stops router
+  % end
+  <section>
+    <img src="router_lite.svg">
+  </section>
+  <section>
+    <img src="router_lite_question.svg">
+  </section>
+  %= markdown_section begin
+    ## Nested Routing
+
+    - `group`
+      * localizes the effect of `under`
+      * a sign that it is time for hybrid routing
+  % end
+  <section>
+    <img src="router_lite_group.svg">
+  </section>
+  %= markdown_section begin
+    ## Object Tree Routing
+
+    - routes build off others
+    - now `under` is just an "inner node with conditions"
+    - use `any` for an "inner node" without them
+  % end
+  <section>
+    <img src="router_full.svg">
+  </section>
+  <section>
+    <h3>The Grouped Lite Routes Become ...</h3>
+    %= include_code 'ex/lite/pushpin.pl' => section => 'routes_admin'
+  </section>
+  <section>
+    <h3>... A Proper Object Tree</h3>
+    %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_admin'
   </section>
 </section>

@@ -1,0 +1,7 @@
+graph TD
+A[/] -->|"$r->get('/foo')"| B[GET /foo]
+A --> |"$r->post('/bar')"| C[POST /bar]
+A --> |"my $u = $r->under('/admin')"| D{ANY /admin}
+D --> |"$u->get('/safe')"| E[GET /admin/safe]
+D --> |"$u->get('/lock')"| F[GET /admin/lock]
+A --> |"$r->get('/baz')"| G[GET /baz]

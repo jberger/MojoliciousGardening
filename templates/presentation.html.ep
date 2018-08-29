@@ -241,9 +241,11 @@
     ## The Full-Hybrid App
 
     - Easy because of the lite-hybrid step
-    - Move logic to a module, dummy script
-    - Still uses hybrid routes
     - Split out supporting files
+    - Split script
+      * app logic to a module
+      * a dummy script
+    - Still uses hybrid routes
   % end
   %= markdown_section begin
     ## Supporting Files
@@ -267,8 +269,8 @@
     - Move pushpin.pl to lib/Pushpin.pm
     - Replace `app->start` with `1;`
     - Wrap remainder `sub startup { }`
-      * Passed `$app`
       * Exclude imports, true return,  and `__DATA__`
+      * Passed `$app`
     - migrations can stay in `__DATA__`
   % end
   <section>

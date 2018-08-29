@@ -151,6 +151,7 @@
   % end
 
   <section>
+    <h3>Add two new variables</h3>
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'app', include_filename => 0
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'router'
   </section>
@@ -227,5 +228,61 @@
   <section>
     <h3>... A Proper Object Tree</h3>
     %= include_code 'ex/lite-hybrid/pushpin.pl' => section => 'routes_admin'
+  </section>
+</section>
+
+<section>
+  <h2>The Final Lite-Hybrid Script</h2>
+  %= include_code 'ex/lite-hybrid/pushpin.pl'
+</section>
+
+<section>
+  %= markdown_section begin
+    ## The Full-Hybrid App
+
+    - Easy because of the lite-hybrid step
+    - Move logic to a module, dummy script
+    - Still uses hybrid routes
+    - Split out supporting files
+  % end
+  %= markdown_section begin
+    ## Supporting Files
+
+    - Use the [`inflate`](https://mojolicious.org/perldoc/Mojolicious/Command/inflate) command
+    - Or manually move files
+      * static files in `public/`
+      * templates in `templates/`
+  % end
+  %= markdown_section begin
+    ## Supporting Files
+
+    - public/pushpin.js
+    - templates/map.html.ep
+    - templates/table.html.ep
+    - templates/layouts/main.html.ep
+  % end
+  %= markdown_section begin
+    ## The Application Class
+
+    - Move pushpin.pl to lib/Pushpin.pm
+    - Replace `app->start` with `1;`
+    - Wrap remainder `sub startup { }`
+      * Passed `$app`
+      * Exclude imports, true return,  and `__DATA__`
+    - migrations can stay in `__DATA__`
+  % end
+  <section>
+    %= include_code 'ex/full-hybrid/lib/Pushpin.pm'
+  </section>
+  %= markdown_section begin
+    ## The Application Script
+
+    - In `script/` directory
+    - A dummy script to load the class
+    - Take the one from the end of the [Growing Guide](https://mojolicious.org/perldoc/Mojolicious/Guides/Growing#Script)
+      * Just change the class name
+  % end
+  <section>
+    %= include_code 'ex/full-hybrid/script/pushpin'
   </section>
 </section>

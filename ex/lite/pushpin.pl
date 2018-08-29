@@ -149,6 +149,7 @@ export function removePins() {
   </tr>
   % }
 </table>
+%= link_to 'Log out' => 'logout'
 
 @@ layouts/main.html.ep
 <!DOCTYPE html>

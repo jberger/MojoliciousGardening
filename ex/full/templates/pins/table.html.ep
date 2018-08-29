@@ -14,5 +14,6 @@
   </tr>
   % }
 </table>
+%= link_to 'Log out' => 'logout'
 
 

@@ -270,7 +270,7 @@
     - Replace `app->start` with `1;`
     - Wrap remainder `sub startup { }`
       * Exclude imports, true return,  and `__DATA__`
-      * Passed `$app`
+      * Passed `$app` (remove `my $app = app;`)
     - migrations can stay in `__DATA__`
   % end
   <section>

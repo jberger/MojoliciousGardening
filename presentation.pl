@@ -5,6 +5,8 @@ use Mojolicious::Lite;
 
 plugin 'RevealJS';
 
+push @{ app->static->paths }, '.';
+
 any '/' => { template => 'presentation', layout => 'revealjs' };
 
 helper markdown_fragment => sub {

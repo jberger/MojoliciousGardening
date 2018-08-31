@@ -2,20 +2,20 @@ use Mojolicious::Lite -signatures;
 
 use Mojo::SQLite;
 
-# reveal begin config
+# sample(config)
 my $conf = plugin Config => {
   default => {
     db => 'pushpin.db',
     admin => 'bender',
   },
 };
-# reveal end config
+# end-sample
 
-# reveal begin sqlite
+# sample(sqlite)
 my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
-# reveal end sqlite
-# reveal begin helpers
+# end-sample
+# sample(helpers)
 helper db => sub { $sqlite->db };
 
 helper pins => sub ($c) { $c->db->select('pins')->hashes };
@@ -25,18 +25,18 @@ helper basic_auth => sub ($c) {
   $c->rendered(401);
   return 0;
 };
-# reveal end helpers
+# end-sample
 
-# reveal begin routes_pins
+# sample(routes_pins)
 get '/pins' => sub ($c) { $c->render(json => $c->pins) };
 
 post '/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
   $c->rendered(204);
 };
-# reveal end routes_pins
+# end-sample
 
-# reveal begin routes_admin
+# sample(routes_admin)
 group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
@@ -52,15 +52,15 @@ group {
     $c->redirect_to('table');
   } => 'remove';
 };
-# reveal end routes_admin
+# end-sample
 
-# reveal begin routes_final
+# sample(routes_final)
 any '/logout' => sub ($c) {
   $c->session(expires => 1)->basic_auth;
 };
 
 any '/*any' => {any => ''} => 'map';
-# reveal end routes_final
+# end-sample
 
 app->start;
 

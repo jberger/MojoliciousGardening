@@ -2,7 +2,7 @@ package Pushpin::Controller::Admin;
 
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
-# reveal begin main
+# sample(main)
 sub check ($c) {
   return 1 if $c->session('admin');
   my $conf = $c->app->config;
@@ -18,7 +18,7 @@ sub _basic_auth ($c) {
   $c->rendered(401);
   return 0;
 }
-# reveal end main
+# end-sample
 
 1;
 

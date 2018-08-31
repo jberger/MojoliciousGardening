@@ -1,3 +1,3 @@
 requires 'Mojolicious';
-requires 'Mojolicious::Plugin::RevealJS' => '0.13';
+requires 'Mojolicious::Plugin::RevealJS' => '0.15'; # sampler
 

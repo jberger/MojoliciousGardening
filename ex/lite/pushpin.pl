@@ -2,20 +2,15 @@ use Mojolicious::Lite -signatures;
 
 use Mojo::SQLite;
 
-# sample(config)
 my $conf = plugin Config => {
   default => {
     db => 'pushpin.db',
     admin => 'bender',
   },
 };
-# end-sample
 
-# sample(sqlite)
 my $sqlite = Mojo::SQLite->new($conf->{db})->auto_migrate(1);
 $sqlite->migrations->from_data;
-# end-sample
-# sample(helpers)
 helper db => sub { $sqlite->db };
 
 helper pins => sub ($c) { $c->db->select('pins')->hashes };
@@ -25,18 +20,14 @@ helper basic_auth => sub ($c) {
   $c->rendered(401);
   return 0;
 };
-# end-sample
 
-# sample(routes_pins)
 get '/pins' => sub ($c) { $c->render(json => $c->pins) };
 
 post '/pins' => sub ($c) {
   $c->db->insert(pins => $c->req->json);
   $c->rendered(204);
 };
-# end-sample
 
-# sample(routes_admin)
 group {
   under '/admin' => sub ($c) {
     return 1 if $c->session('admin');
@@ -52,15 +43,12 @@ group {
     $c->redirect_to('table');
   } => 'remove';
 };
-# end-sample
 
-# sample(routes_final)
 any '/logout' => sub ($c) {
   $c->session(expires => 1)->basic_auth;
 };
 
 any '/*any' => {any => ''} => 'map';
-# end-sample
 
 app->start;
 

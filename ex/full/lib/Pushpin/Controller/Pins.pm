@@ -2,7 +2,6 @@ package Pushpin::Controller::Pins;
 
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
-# sample(main)
 sub all ($c) { $c->render(json => $c->pins) }
 
 sub create ($c) {
@@ -18,7 +17,6 @@ sub remove ($c) {
 }
 
 sub table { }
-# end-sample
 
 1;
 

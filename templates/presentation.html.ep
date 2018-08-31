@@ -147,33 +147,39 @@
   </section>
 
   <section>
-    %= include_sample 'ex/lite/pushpin.pl#config'
+    %# config
+    %= include_sample 'ex/lite/pushpin.pl#5-10'
   </section>
 
   <section>
-    %= include_sample 'ex/lite/pushpin.pl#sqlite'
+    %# sqlite
+    %= include_sample 'ex/lite/pushpin.pl#12-13'
   </section>
 
   <section>
-    %= include_sample 'ex/lite/pushpin.pl#helpers'
+    %# helpers
+    %= include_sample 'ex/lite/pushpin.pl#14-22'
   </section>
 
   <section>
-    %= include_sample 'ex/lite/pushpin.pl#routes_pins'
+    %# routes_pins
+    %= include_sample 'ex/lite/pushpin.pl#24-29'
   </section>
 
   %= section_group none => begin
-    %= include_sample 'ex/lite/pushpin.pl#routes_admin'
+    %# routes_admin
+    %= include_sample 'ex/lite/pushpin.pl#31-45'
   <% end, %><% begin %>
-    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '3'
+    %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '3'
   <% end, %><% begin %>
-    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '4-5'
+    %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '4-5'
   <% end, %><% begin %>
-    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '6'
+    %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '6'
   % end
 
   <section>
-    %= include_sample 'ex/lite/pushpin.pl#routes_final'
+    %# routes_final
+    %= include_sample 'ex/lite/pushpin.pl#47-51'
   </section>
 
   %= markdown_section begin
@@ -203,28 +209,28 @@
 
   <section>
     <h3>Add two new variables</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#new_vars'
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#5,26'
   </section>
 
   <section>
     <h3> Helper keyword ...</h3>
-    %= include_sample 'ex/lite/pushpin.pl#helpers'
+    %= include_sample 'ex/lite/pushpin.pl#14-22'
   </section>
   <section>
     <h3>... becomes helper method</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#helpers'
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#18-26'
   </section>
 
   <!-- TODO: mention hybrid routes taking same arguments as keyword form -->
   <section>
     <h3>And toplevel routes ...</h3>
-    %= include_sample 'ex/lite/pushpin.pl#routes_pins', annotation => undef
-    %= include_sample 'ex/lite/pushpin.pl#routes_final'
+    %= include_sample 'ex/lite/pushpin.pl#24-29', annotation => undef
+    %= include_sample 'ex/lite/pushpin.pl#47-51'
   </section>
   <section>
     <h3>... are created by router methods</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_pins', annotation => undef
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_final'
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#28-33', annotation => undef
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#49-53'
   </section>
 </section>
 
@@ -273,17 +279,17 @@
   </section>
   <section>
     <h3>The Grouped Lite Routes Become ...</h3>
-    %= include_sample 'ex/lite/pushpin.pl#routes_admin'
+    %= include_sample 'ex/lite/pushpin.pl#31-45'
   </section>
   %= section_group none => begin
     <h3>... A Proper Object Tree</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin'
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#35-47'
   <% end, %><% begin %>
     <h3>... A Proper Object Tree</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin', mark => 1
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#35-47', mark => 1
   <% end, %><% begin %>
     <h3>... A Proper Object Tree</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin', mark => '8,10'
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#35-47', mark => '8,10'
   % end
 </section>
 
@@ -355,16 +361,18 @@
     - Templates in per-controller directories
   % end
   <section>
-    %= include_sample 'ex/full/lib/Pushpin.pm#routes'
+    %# routes
+    %= include_sample 'ex/full/lib/Pushpin.pm#27-35'
   </section>
   <section>
-    %= include_sample 'ex/full/lib/Pushpin.pm#sqlite'
+    %# sqlite
+    %= include_sample 'ex/full/lib/Pushpin.pm#6-11'
   </section>
   <section>
-    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#main'
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19'
   </section>
   <section>
-    %= include_sample 'ex/full/lib/Pushpin/Controller/Pins.pm#main'
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Pins.pm#5-19'
   </section>
   %= markdown_section begin
     ## Supporting Files

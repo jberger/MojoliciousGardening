@@ -25,75 +25,120 @@
     <li>I first gave this talk at MojoConf September 2018</li>
     <li>The talk is hosted at <a href="http://jberger.github.io/MojoliciousGardening" target="_blank">http://jberger.github.io/MojoliciousGardening</a></li>
     <li>The source is available at <a href="https://github.com/jberger/MojoliciousGardening" target="_blank">https://github.com/jberger/MojoliciousGardening</a></li>
-    <!--li>All code samples and all tests:
+    <li>All code samples and all tests:
       <ul>
         <li>are complete and run as shown</li>
         <li>are included in the repository</li>
       </ul>
-    </li-->
+    </li>
   </ul>
 
 </section>
 
-%= markdown_section begin
-  ## Don't Fear the Full App!
+<section>
+  %= markdown_section begin
+    ## TL;DR
+  % end
 
-  Lite is just a thin wrapper
-% end
+  %= markdown_section begin
+    ## Don't Fear the Full App!
+
+    Lite is just a thin wrapper
+  % end
+</section>
 
 %= markdown_section begin
   ## Get Help
 
   - [Growing Guide](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
   - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
-% end
-
-%= markdown_section begin
-  ## The Script
-
-% end
-
-%= markdown_section begin
-  ## App Keywords
-
-  - app
-  - helper
-  - hook
-  - plugin
-
-% end
-
-%= markdown_section begin
-  ## Routing Keywords
-
-  - any
-  - del (as delete)
-  - get
-  - options
-  - patch
-  - post
-  - put
-  - websocket
-
-% end
-
-%= markdown_section begin
-  ## Nested routing
-
-  - under
-  - group
-
-% end
-
-%= markdown_section begin
-  ## Supporting Files
-
-  - templates
-  - static files
-
+  - [2017-12-04 Advent Post](https://mojolicious.io/blog/2017/12/04/day-4-dont-fear-the-full-app/)
+  - <a href="http://chat.mibbit.com/?channel=%23mojo&server=irc.perl.org" target="_blank">#mojo on irc.perl.org</a>
 % end
 
 <section>
+  %= markdown_section begin
+    ## Components
+  % end
+
+  %= markdown_section begin
+    ## The Perl Application
+
+    - Script
+    - App module
+    - Controllers
+    - Models
+
+  % end
+
+  %= markdown_section begin
+    ## App Keywords
+
+    - app
+    - helper
+    - hook
+    - plugin
+
+  % end
+
+  %= markdown_section begin
+    ## Routing Keywords
+
+    - any
+    - del (as delete)
+    - get
+    - options
+    - patch
+    - post
+    - put
+    - websocket
+
+  % end
+
+  %= markdown_section begin
+    ## Nested routing
+
+    - under
+    - group
+
+  % end
+
+  %= markdown_section begin
+    ## Supporting Files
+
+    - templates
+    - static files
+
+  % end
+
+  %= markdown_section begin
+    ## Tests
+
+    - Just the app loader
+  % end
+</section>
+
+<section>
+
+  %= markdown_section begin
+    ## Motivation
+
+    - Example App / Live Demo!
+    - <https://demo.jberger.pl>
+      * During the live presentation only
+      * Included in the repository
+    - Port to Full App
+  % end
+
+  %= markdown_section begin
+    ## Porting Phases
+
+    - Lite
+    - Lite-Hybrid
+    - Full-Hybrid
+    - Full
+    - Full with Models
+  % end
 
   <section>
     <h2>Pushpin Application</h2>
@@ -117,9 +162,15 @@
     %= include_sample 'ex/lite/pushpin.pl#routes_pins'
   </section>
 
-  <section>
+  %= section_group none => begin
     %= include_sample 'ex/lite/pushpin.pl#routes_admin'
-  </section>
+  <% end, %><% begin %>
+    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '3'
+  <% end, %><% begin %>
+    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '4-5'
+  <% end, %><% begin %>
+    %= include_sample 'ex/lite/pushpin.pl#routes_admin', mark => '6'
+  % end
 
   <section>
     %= include_sample 'ex/lite/pushpin.pl#routes_final'
@@ -189,26 +240,25 @@
   %= markdown_section begin
     ## Nested Routing
 
-    - `under`
+    - `under` keyword
+      * conditionally stops router
       * replaces the current router
       * creates an "inner node"
-      * conditionally stops router
   % end
-  <section>
-    <img src="router_lite.svg">
-  </section>
-  <section>
-    <img src="router_lite_question.svg">
-  </section>
+  %= section_group none => begin
+    <img width="80%" src="router_lite.svg">
+  <% end, %><% begin %>
+    <img width="80%" src="router_lite_question.svg">
+  % end
   %= markdown_section begin
     ## Nested Routing
 
-    - `group`
+    - `group` keyword
       * localizes the effect of `under`
       * a sign that it is time for hybrid routing
   % end
   <section>
-    <img src="router_lite_group.svg">
+    <img width="80%" src="router_lite_group.svg">
   </section>
   %= markdown_section begin
     ## Object Tree Routing
@@ -218,16 +268,23 @@
     - use `any` for an "inner node" without them
   % end
   <section>
-    <img src="router_full.svg">
+    <img width="80%" src="router_full.svg">
+    <!-- TODO show with any as inner node -->
   </section>
   <section>
     <h3>The Grouped Lite Routes Become ...</h3>
     %= include_sample 'ex/lite/pushpin.pl#routes_admin'
   </section>
-  <section>
+  %= section_group none => begin
     <h3>... A Proper Object Tree</h3>
     %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin'
-  </section>
+  <% end, %><% begin %>
+    <h3>... A Proper Object Tree</h3>
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin', mark => 1
+  <% end, %><% begin %>
+    <h3>... A Proper Object Tree</h3>
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#routes_admin', mark => '8,10'
+  % end
 </section>
 
 <section>
@@ -267,10 +324,9 @@
 
     - Move pushpin.pl to lib/Pushpin.pm
     - Replace `app->start` with `1;`
-    - Wrap remainder `sub startup { }`
-      * Exclude imports, true return,  and `__DATA__`
-      * Passed `$app` (remove `my $app = app;`)
-    - migrations can stay in `__DATA__`
+    - Wrap logic in `sub startup ($app) { }`
+      * Remove `my $app = app;`
+    - Migrations can stay in `__DATA__`
   % end
   <section>
     %= include_sample 'ex/full-hybrid/lib/Pushpin.pm'
@@ -290,21 +346,13 @@
 
 <section>
   %= markdown_section begin
-    ## Finally, the Full App
+    ## The Full App
 
     - Controller classes
     - Routes point to controllers
-    - Templates in per-controller directories
     - Application attributes
     - Some helpers can be controller methods
-  % end
-  %= markdown_section begin
-    ## Supporting Files
-
-    - public/pushpin.js
-    - templates/pins/map.html.ep
-    - templates/pins/table.html.ep
-    - templates/layouts/main.html.ep
+    - Templates in per-controller directories
   % end
   <section>
     %= include_sample 'ex/full/lib/Pushpin.pm#routes'
@@ -318,4 +366,21 @@
   <section>
     %= include_sample 'ex/full/lib/Pushpin/Controller/Pins.pm#main'
   </section>
+  %= markdown_section begin
+    ## Supporting Files
+
+    - public/pushpin.js
+    - templates/pins/map.html.ep
+    - templates/pins/table.html.ep
+    - templates/layouts/main.html.ep
+  % end
+</section>
+
+<section>
+  %= markdown_section begin
+    ## Technically, You're Done!
+  % end
+  %= markdown_section begin
+    ## Full with Models
+  % end
 </section>

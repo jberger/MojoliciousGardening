@@ -19,7 +19,7 @@
 
 <section>
 
-  <h2>About this talk</h2>
+  <h2>Meta-Slide</h2>
 
   <ul>
     <li>I first gave this talk at MojoConf September 2018</li>
@@ -43,7 +43,8 @@
   %= markdown_section begin
     ## Don't Fear the Full App!
 
-    Lite is just a thin wrapper
+    - Lite is just a thin wrapper
+    - Some stragies for porting
   % end
 </section>
 
@@ -51,10 +52,12 @@
   ## Get Help
 
   - [Growing Guide](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
-  - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
   - [2017-12-04 Advent Post](https://mojolicious.io/blog/2017/12/04/day-4-dont-fear-the-full-app/)
+  - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
   - <a href="http://chat.mibbit.com/?channel=%23mojo&server=irc.perl.org" target="_blank">#mojo on irc.perl.org</a>
 % end
+
+<!-- TODO: Why port at all? -->
 
 <section>
   %= markdown_section begin
@@ -85,18 +88,18 @@
     ## Routing Keywords
 
     - any
-    - del (as delete)
     - get
-    - options
-    - patch
     - post
     - put
+    - patch
+    - del (as delete)
+    - options
     - websocket
 
   % end
 
   %= markdown_section begin
-    ## Nested routing
+    ## Nested routing keywords
 
     - under
     - group
@@ -131,7 +134,7 @@
   % end
 
   %= markdown_section begin
-    ## Porting Phases
+    ## Porting States
 
     - Lite
     - Lite-Hybrid
@@ -154,6 +157,11 @@
   <section>
     %# sqlite
     %= include_sample 'ex/lite/pushpin.pl#12-13'
+  </section>
+
+  <section>
+    %# migrations
+    %= include_sample 'ex/lite/pushpin.pl#154-161'
   </section>
 
   <section>
@@ -212,31 +220,29 @@
     %= include_sample 'ex/lite-hybrid/pushpin.pl#5,26'
   </section>
 
-  <section>
+  %= section_group none => begin
     <h3> Helper keyword ...</h3>
     %= include_sample 'ex/lite/pushpin.pl#14-22'
-  </section>
-  <section>
+  <% end, %><% begin %>
     <h3>... becomes helper method</h3>
-    %= include_sample 'ex/lite-hybrid/pushpin.pl#18-26'
-  </section>
+    %= include_sample 'ex/lite-hybrid/pushpin.pl#16-24'
+  % end
 
   <!-- TODO: mention hybrid routes taking same arguments as keyword form -->
-  <section>
+  %= section_group none => begin
     <h3>And toplevel routes ...</h3>
     %= include_sample 'ex/lite/pushpin.pl#24-29', annotation => undef
     %= include_sample 'ex/lite/pushpin.pl#47-51'
-  </section>
-  <section>
+  <% end, %><% begin %>
     <h3>... are created by router methods</h3>
     %= include_sample 'ex/lite-hybrid/pushpin.pl#28-33', annotation => undef
     %= include_sample 'ex/lite-hybrid/pushpin.pl#49-53'
-  </section>
+  % end
 </section>
 
 <section>
   %= markdown_section begin
-    ## Nested Routing
+    ## About Nested Routing
 
     - routes are a tree
     - routing keywords (except under/group)
@@ -247,6 +253,7 @@
     ## Nested Routing
 
     - `under` keyword
+      * share code between routes
       * conditionally stops router
       * replaces the current router
       * creates an "inner node"
@@ -257,7 +264,7 @@
     <img width="80%" src="router_lite_question.svg">
   % end
   %= markdown_section begin
-    ## Nested Routing
+    ## Localized Nested Routing
 
     - `group` keyword
       * localizes the effect of `under`
@@ -270,18 +277,21 @@
     ## Object Tree Routing
 
     - routes build off others
-    - now `under` is just an "inner node with conditions"
-    - use `any` for an "inner node" without them
+    - `under`
+      * share code between routes
+      * conditionally stops router
+      * creates an "inner node"
+    - Other methods with children
+      * creates an "inner node"
   % end
   <section>
     <img width="80%" src="router_full.svg">
     <!-- TODO show with any as inner node -->
   </section>
-  <section>
+  %= section_group none => begin
     <h3>The Grouped Lite Routes Become ...</h3>
     %= include_sample 'ex/lite/pushpin.pl#31-45'
-  </section>
-  %= section_group none => begin
+  <% end, %><% begin %>
     <h3>... A Proper Object Tree</h3>
     %= include_sample 'ex/lite-hybrid/pushpin.pl#35-47'
   <% end, %><% begin %>
@@ -329,6 +339,7 @@
     ## The Application Class
 
     - Move pushpin.pl to lib/Pushpin.pm
+    - Package inherits from `Mojolicious`
     - Replace `app->start` with `1;`
     - Wrap logic in `sub startup ($app) { }`
       * Remove `my $app = app;`
@@ -345,9 +356,11 @@
     - Take the one from the end of the [Growing Guide](https://mojolicious.org/perldoc/Mojolicious/Guides/Growing#Script)
       * Just change the class name
   % end
-  <section>
+  %= section_group none => begin
     %= include_sample 'ex/full-hybrid/script/pushpin', lang => 'perl'
-  </section>
+  <% end, %><% begin %>
+    %= include_sample 'ex/full-hybrid/script/pushpin', mark => 11, lang => 'perl'
+  % end
 </section>
 
 <section>
@@ -365,13 +378,30 @@
     %= include_sample 'ex/full/lib/Pushpin.pm#27-35'
   </section>
   <section>
-    %# sqlite
+    <h2>App Attribute</h2>
     %= include_sample 'ex/full/lib/Pushpin.pm#6-11'
   </section>
   <section>
-    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19'
+    %= include_sample 'ex/full/lib/Pushpin.pm'
   </section>
+</section>
+
+<section>
+  %= markdown_section begin
+    ## Controller Classes
+  % end
+  %= section_group none => begin
+    <h3>Admin Controller</h3>
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19'
+  <% end, %><% begin %>
+    <h3>Admin Controller</h3>
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => 3
+  <% end, %><% begin %>
+    <h3>Admin Controller</h3>
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => '6,9,11'
+  % end
   <section>
+    <h3>Pins Controller</h3>
     %= include_sample 'ex/full/lib/Pushpin/Controller/Pins.pm#5-19'
   </section>
   %= markdown_section begin

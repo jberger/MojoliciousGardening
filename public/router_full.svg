@@ -1,0 +1,350 @@
+<svg id="mermaid-1535488745627" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width: 562.3125px;" viewBox="0 0 562.3125 362.5406265258789"><style>
+
+
+#mermaid-1535488745627 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1535488745627 .node rect,
+#mermaid-1535488745627 .node circle,
+#mermaid-1535488745627 .node ellipse,
+#mermaid-1535488745627 .node polygon {
+  fill: #BDD5EA;
+  stroke: purple;
+  stroke-width: 1px; }
+
+#mermaid-1535488745627 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1535488745627 .arrowheadPath {
+  fill: lightgrey; }
+
+#mermaid-1535488745627 .edgePath .path {
+  stroke: lightgrey;
+  stroke-width: 1.5px; }
+
+#mermaid-1535488745627 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1535488745627 .cluster rect {
+  fill: #6D6D65 !important;
+  stroke: rgba(255, 255, 255, 0.25) !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1535488745627 .cluster text {
+  fill: #F9FFFE; }
+
+#mermaid-1535488745627 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #6D6D65;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1535488745627 .actor {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+#mermaid-1535488745627 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1535488745627 .actor-line {
+  stroke: lightgrey; }
+
+#mermaid-1535488745627 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: lightgrey; }
+
+#mermaid-1535488745627 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+#mermaid-1535488745627 #arrowhead {
+  fill: lightgrey; }
+
+#mermaid-1535488745627 #crosshead path {
+  fill: lightgrey !important;
+  stroke: lightgrey !important; }
+
+#mermaid-1535488745627 .messageText {
+  fill: lightgrey;
+  stroke: none; }
+
+#mermaid-1535488745627 .labelBox {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+#mermaid-1535488745627 .labelText {
+  fill: lightgrey;
+  stroke: none; }
+
+#mermaid-1535488745627 .loopText {
+  fill: lightgrey;
+  stroke: none; }
+
+#mermaid-1535488745627 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #81B1DB; }
+
+#mermaid-1535488745627 .note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+
+#mermaid-1535488745627 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1535488745627 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1535488745627 .section0 {
+  fill: rgba(255, 255, 255, 0.3); }
+
+#mermaid-1535488745627 .section2 {
+  fill: #EAE8B9; }
+
+#mermaid-1535488745627 .section1,
+#mermaid-1535488745627 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1535488745627 .sectionTitle0 {
+  fill: #F9FFFE; }
+
+#mermaid-1535488745627 .sectionTitle1 {
+  fill: #F9FFFE; }
+
+#mermaid-1535488745627 .sectionTitle2 {
+  fill: #F9FFFE; }
+
+#mermaid-1535488745627 .sectionTitle3 {
+  fill: #F9FFFE; }
+
+#mermaid-1535488745627 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1535488745627 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1535488745627 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1535488745627 .today {
+  fill: none;
+  stroke: #DB5757;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1535488745627 .task {
+  stroke-width: 2; }
+
+#mermaid-1535488745627 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1535488745627 .taskTextOutsideRight {
+  fill: #323D47;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1535488745627 .taskTextOutsideLeft {
+  fill: #323D47;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1535488745627 .taskText0,
+#mermaid-1535488745627 .taskText1,
+#mermaid-1535488745627 .taskText2,
+#mermaid-1535488745627 .taskText3 {
+  fill: #323D47; }
+
+#mermaid-1535488745627 .task0,
+#mermaid-1535488745627 .task1,
+#mermaid-1535488745627 .task2,
+#mermaid-1535488745627 .task3 {
+  fill: #BDD5EA;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+#mermaid-1535488745627 .taskTextOutside0,
+#mermaid-1535488745627 .taskTextOutside2 {
+  fill: lightgrey; }
+
+#mermaid-1535488745627 .taskTextOutside1,
+#mermaid-1535488745627 .taskTextOutside3 {
+  fill: lightgrey; }
+
+
+#mermaid-1535488745627 .active0,
+#mermaid-1535488745627 .active1,
+#mermaid-1535488745627 .active2,
+#mermaid-1535488745627 .active3 {
+  fill: #81B1DB;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+#mermaid-1535488745627 .activeText0,
+#mermaid-1535488745627 .activeText1,
+#mermaid-1535488745627 .activeText2,
+#mermaid-1535488745627 .activeText3 {
+  fill: #323D47 !important; }
+
+
+#mermaid-1535488745627 .done0,
+#mermaid-1535488745627 .done1,
+#mermaid-1535488745627 .done2,
+#mermaid-1535488745627 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1535488745627 .doneText0,
+#mermaid-1535488745627 .doneText1,
+#mermaid-1535488745627 .doneText2,
+#mermaid-1535488745627 .doneText3 {
+  fill: #323D47 !important; }
+
+
+#mermaid-1535488745627 .crit0,
+#mermaid-1535488745627 .crit1,
+#mermaid-1535488745627 .crit2,
+#mermaid-1535488745627 .crit3 {
+  stroke: #E83737;
+  fill: #E83737;
+  stroke-width: 2; }
+
+#mermaid-1535488745627 .activeCrit0,
+#mermaid-1535488745627 .activeCrit1,
+#mermaid-1535488745627 .activeCrit2,
+#mermaid-1535488745627 .activeCrit3 {
+  stroke: #E83737;
+  fill: #81B1DB;
+  stroke-width: 2; }
+
+#mermaid-1535488745627 .doneCrit0,
+#mermaid-1535488745627 .doneCrit1,
+#mermaid-1535488745627 .doneCrit2,
+#mermaid-1535488745627 .doneCrit3 {
+  stroke: #E83737;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1535488745627 .doneCritText0,
+#mermaid-1535488745627 .doneCritText1,
+#mermaid-1535488745627 .doneCritText2,
+#mermaid-1535488745627 .doneCritText3 {
+  fill: #323D47 !important; }
+
+#mermaid-1535488745627 .activeCritText0,
+#mermaid-1535488745627 .activeCritText1,
+#mermaid-1535488745627 .activeCritText2,
+#mermaid-1535488745627 .activeCritText3 {
+  fill: #323D47 !important; }
+
+#mermaid-1535488745627 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #323D47; }
+
+#mermaid-1535488745627 g.classGroup text {
+  fill: purple;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1535488745627 g.classGroup rect {
+  fill: #BDD5EA;
+  stroke: purple; }
+
+#mermaid-1535488745627 g.classGroup line {
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+#mermaid-1535488745627 .classLabel .label {
+  fill: purple;
+  font-size: 10px; }
+
+#mermaid-1535488745627 .relation {
+  stroke: purple;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1535488745627 #compositionStart {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #compositionEnd {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #aggregationStart {
+  fill: #BDD5EA;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #aggregationEnd {
+  fill: #BDD5EA;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #dependencyStart {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #dependencyEnd {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #extensionStart {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 #extensionEnd {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 1; }
+
+#mermaid-1535488745627 .commit-id,
+#mermaid-1535488745627 .commit-msg,
+#mermaid-1535488745627 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1535488745627 {
+    color: rgba(0, 0, 0, 0.65);
+    font: normal normal 400 normal 14px / 21px "Monospaced Number", "Chinese Quote", -apple-system, system-ui, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }</style><g transform="translate(-12, -12)"><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M264.3125,44.11717048684162L66.3203125,96.5L66.3203125,172.77031326293945" marker-end="url(#arrowhead12266)" style="fill:none"></path><defs><marker id="arrowhead12266" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M264.3125,49.940323668240055L196.8828125,96.5L196.8828125,172.77031326293945" marker-end="url(#arrowhead12267)" style="fill:none"></path><defs><marker id="arrowhead12267" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M291.65625,49.940323668240055L359.0859375,96.5L359.58593749999994,132.5000007629395" marker-end="url(#arrowhead12268)" style="fill:none"></path><defs><marker id="arrowhead12268" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M330.2187574113395,225.6734456742788L270.0078125,290.0406265258789L270.0078125,325.5406265258789" marker-end="url(#arrowhead12269)" style="fill:none"></path><defs><marker id="arrowhead12269" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M388.9531168572989,225.6734448797617L448.1640625,290.0406265258789L448.1640625,325.5406265258789" marker-end="url(#arrowhead12270)" style="fill:none"></path><defs><marker id="arrowhead12270" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M291.65625,43.680578995196676L518.703125,96.5L518.703125,172.77031326293945" marker-end="url(#arrowhead12271)" style="fill:none"></path><defs><marker id="arrowhead12271" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(66.3203125,96.5)" style="opacity: 1;"><g transform="translate(-46.3203125,-10.5)" class="label"><foreignObject width="92.640625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">$r-&gt;get('/foo')</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(196.8828125,96.5)" style="opacity: 1;"><g transform="translate(-50.1953125,-10.5)" class="label"><foreignObject width="100.390625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">$r-&gt;post('/bar')</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(359.0859375,96.5)" style="opacity: 1;"><g transform="translate(-92.0078125,-10.5)" class="label"><foreignObject width="184.015625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">my $u = $r-&gt;under('/admin')</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(270.0078125,290.0406265258789)" style="opacity: 1;"><g transform="translate(-51.1953125,-10.5)" class="label"><foreignObject width="102.390625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">$u-&gt;get('/safe')</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(448.1640625,290.0406265258789)" style="opacity: 1;"><g transform="translate(-50.9140625,-10.5)" class="label"><foreignObject width="101.828125" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">$u-&gt;get('/lock')</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(518.703125,96.5)" style="opacity: 1;"><g transform="translate(-47.609375,-10.5)" class="label"><foreignObject width="95.21875" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">$r-&gt;get('/baz')</span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="A" transform="translate(277.984375,40.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-13.671875" y="-20.5" width="27.34375" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-3.671875,-10.5)"><foreignObject width="7.34375" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">/</div></foreignObject></g></g></g><g class="node" id="B" transform="translate(66.3203125,193.27031326293945)" style="opacity: 1;"><rect rx="0" ry="0" x="-38.4296875" y="-20.5" width="76.859375" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-28.4296875,-10.5)"><foreignObject width="56.859375" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">GET /foo</div></foreignObject></g></g></g><g class="node" id="C" transform="translate(196.8828125,193.27031326293945)" style="opacity: 1;"><rect rx="0" ry="0" x="-42.1328125" y="-20.5" width="84.265625" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32.1328125,-10.5)"><foreignObject width="64.265625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">POST /bar</div></foreignObject></g></g></g><g class="node" id="D" transform="translate(359.0859375,193.27031326293945)" style="opacity: 1;"><polygon points="61.2703125,0 122.540625,-61.2703125 61.2703125,-122.540625 0,-61.2703125" rx="5" ry="5" transform="translate(-61.2703125,61.2703125)"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-37.578125,-10.5)"><foreignObject width="75.15625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">ANY /admin</div></foreignObject></g></g></g><g class="node" id="E" transform="translate(270.0078125,346.0406265258789)" style="opacity: 1;"><rect rx="0" ry="0" x="-64.125" y="-20.5" width="128.25" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-54.125,-10.5)"><foreignObject width="108.25" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">GET /admin/safe</div></foreignObject></g></g></g><g class="node" id="F" transform="translate(448.1640625,346.0406265258789)" style="opacity: 1;"><rect rx="0" ry="0" x="-64.03125" y="-20.5" width="128.0625" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-54.03125,-10.5)"><foreignObject width="108.0625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">GET /admin/lock</div></foreignObject></g></g></g><g class="node" id="G" transform="translate(518.703125,193.27031326293945)" style="opacity: 1;"><rect rx="0" ry="0" x="-39.234375" y="-20.5" width="78.46875" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-29.234375,-10.5)"><foreignObject width="58.46875" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">GET /baz</div></foreignObject></g></g></g></g></g></g></svg>

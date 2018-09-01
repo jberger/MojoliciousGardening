@@ -284,10 +284,14 @@
 
     - `group` keyword
       * localizes the effect of `under`
-      * a sign that it is time for hybrid routing
+      * restores previous router on exit
   % end
   <section>
     <img width="80%" src="router_lite_group.svg">
+  </section>
+  <section>
+    <h3>just use hybrid routing</h3>
+    <img src="grumpy_fire.png">
   </section>
   %= markdown_section begin
     ## Object Tree Routing

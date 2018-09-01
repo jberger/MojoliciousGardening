@@ -44,7 +44,9 @@
     ## Don't Fear the Full App!
 
     - Lite is just a thin wrapper
-    - Some stragies for porting
+    - Some tools/strategies for porting
+
+    <img src="zombie.jpg" width="60%">
   % end
 </section>
 
@@ -60,9 +62,15 @@
 <!-- TODO: Why port at all? -->
 
 <section>
-  %= markdown_section begin
-    ## Components
-  % end
+  <section>
+    <h2>Components</h2>
+
+    <div class="fragment">
+      <p>What are we growing?</p>
+
+      <img src="Bacon-Roses.jpg" width="40%">
+    </div>
+  </section>
 
   %= markdown_section begin
     ## The Perl Application
@@ -122,6 +130,12 @@
 </section>
 
 <section>
+
+
+  %= markdown_section begin
+    ## Motivation
+    <img src="beer_garden.jpg" width="40%">
+  % end
 
   %= markdown_section begin
     ## Motivation
@@ -310,6 +324,19 @@
 </section>
 
 <section>
+  <section>
+    <h2>So now it's time to ...</h2>
+    <img class="fragment" src="grow_dammit.jpg" width="80%">
+  </section>
+  %= markdown_section begin
+    ## The Full-Hybrid App
+
+    - Easy because of the lite-hybrid step
+  % end
+  <section>
+    <h2>... mostly moving stuff</h2>
+    <img src="water_fail.gif" witdh="80%">
+  </section>
   %= markdown_section begin
     ## The Full-Hybrid App
 
@@ -426,6 +453,10 @@
     ## Technically, You're Done!
   % end
   %= markdown_section begin
+    ### But if you thought I'd stop here ...
+    <img class="fragment" src="wrong_garden.jpg" width="40%">
+  % end
+  %= markdown_section begin
     ## Full with Models
   % end
   %= section_group none => begin
@@ -481,4 +512,8 @@
     - Extract the controllers (full)
     - Extract the model (full-model)
   % end
+  <section>
+    <img src="this_is_gardening.jpg">
+  </section>
 </section>
+

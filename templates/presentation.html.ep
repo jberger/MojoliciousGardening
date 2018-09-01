@@ -183,6 +183,8 @@
     %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '4-5'
   <% end, %><% begin %>
     %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '6'
+  <% end, %><% begin %>
+    %= include_sample 'ex/lite/pushpin.pl#31-45', mark => '1,15'
   % end
 
   <section>
@@ -277,12 +279,11 @@
     ## Object Tree Routing
 
     - routes build off others
+    - All router methods with children
+      * create "inner node"s
     - `under`
       * share code between routes
       * conditionally stops router
-      * creates an "inner node"
-    - Other methods with children
-      * creates an "inner node"
   % end
   <section>
     <img width="80%" src="router_full.svg">
@@ -373,14 +374,20 @@
     - Some helpers can be controller methods
     - Templates in per-controller directories
   % end
-  <section>
-    %# routes
+  %= section_group none => begin
+    <h2>Routes Point to Controllers</h2>
     %= include_sample 'ex/full/lib/Pushpin.pm#27-35'
-  </section>
-  <section>
+  <% end, %><% begin %>
+    <h2>Routes Point to Controllers</h2>
+    %= include_sample 'ex/full/lib/Pushpin.pm#27-35', mark => '5,6'
+  % end
+  %= section_group none => begin
     <h2>App Attribute</h2>
     %= include_sample 'ex/full/lib/Pushpin.pm#6-11'
-  </section>
+  <% end, %><% begin %>
+    <h2>App Attribute</h2>
+    %= include_sample 'ex/full/lib/Pushpin.pm#6-11', mark => 2
+  % end
   <section>
     %= include_sample 'ex/full/lib/Pushpin.pm'
   </section>
@@ -441,6 +448,20 @@
     <h2>Model Helper</h2>
     %= include_sample 'ex/full-model/lib/Pushpin.pm#22-24'
   % end
+  %= section_group none => begin
+    <h2>Table Template</h2>
+    %= include_sample 'ex/full/templates/pins/table.html.ep#3-16'
+  <% end, %><% begin %>
+    <h2>Table Template</h2>
+    %= include_sample 'ex/full/templates/pins/table.html.ep#3-16', mark => 2
+  <% end, %><% begin %>
+    <h2>Table Template</h2>
+    %= include_sample 'ex/full-model/templates/pins/table.html.ep#3-16', mark => 2
+  % end
+  <section>
+    <h2>Controller Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Controller/Pins.pm#19'
+  </section>
   <section>
     <h2>Controller Class</h2>
     %= include_sample 'ex/full-model/lib/Pushpin/Controller/Pins.pm#5-19'

@@ -421,4 +421,43 @@
   %= markdown_section begin
     ## Full with Models
   % end
+  %= section_group none => begin
+    <h2>Model Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Model/Pins.pm'
+  <% end, %><% begin %>
+    <h2>Model Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Model/Pins.pm', mark => 5
+  <% end, %><% begin %>
+    <h2>Model Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Model/Pins.pm', mark => 7
+  <% end, %><% begin %>
+    <h2>Model Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Model/Pins.pm'
+  % end
+  %= section_group none => begin
+    <h2>Model Helper</h2>
+    %= include_sample 'ex/full/lib/Pushpin.pm#21-23'
+  <% end, %><% begin %>
+    <h2>Model Helper</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin.pm#22-24'
+  % end
+  <section>
+    <h2>Controller Class</h2>
+    %= include_sample 'ex/full-model/lib/Pushpin/Controller/Pins.pm#5-19'
+  </section>
+</section>
+
+<section>
+  %= markdown_section begin
+    ## Wow, that was a lot!
+  % end
+  %= markdown_section begin
+    ## Remember Each Step
+
+    - Prototype (lite)
+    - Remove the DSL (lite-hybrid)
+    - Split application, script, files (full-hybrid)
+    - Extract the controllers (full)
+    - Extract the model (full-model)
+  % end
 </section>

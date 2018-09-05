@@ -524,3 +524,27 @@
   </section>
 </section>
 
+<section>
+  %= markdown_section begin
+    ## Bonus Slides!
+  % end
+  %= markdown_section begin
+    ## The Joys of Modern Javascript
+  % end
+  <section>
+    %= include_sample 'ex/full-model/templates/pins/map.html.ep#7-11', lang => 'html'
+  </section>
+  <section>
+    %= include_sample 'ex/full-model/public/pushpin.js#1-4'
+  </section>
+  <section>
+    %= include_sample 'ex/full-model/public/pushpin.js#49-51'
+  </section>
+  <section>
+    %= include_sample 'ex/full-model/public/pushpin.js#34-47'
+  </section>
+  <section>
+    %= include_sample 'ex/full-model/public/pushpin.js#16-29'
+  </section>
+</section>
+

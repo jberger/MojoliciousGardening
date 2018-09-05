@@ -290,7 +290,7 @@
     <img width="80%" src="router_lite_group.svg">
   </section>
   <section>
-    <h3>just use hybrid routing</h3>
+    <h3>Instead use object tree routing</h3>
     <img src="grumpy_fire.png">
   </section>
   %= markdown_section begin
@@ -477,12 +477,15 @@
     %= include_sample 'ex/full-model/lib/Pushpin/Model/Pins.pm'
   % end
   %= section_group none => begin
-    <h2>Model Helper</h2>
+    <h2>Model Helpers</h2>
     %= include_sample 'ex/full/lib/Pushpin.pm#21-23'
   <% end, %><% begin %>
     <h2>Model Helper</h2>
     %= include_sample 'ex/full-model/lib/Pushpin.pm#22-24'
   % end
+  <section>
+    <img src="dog_flower.jpg">
+  </section>
   %= section_group none => begin
     <h2>Table Template</h2>
     %= include_sample 'ex/full/templates/pins/table.html.ep#3-16'

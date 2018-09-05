@@ -59,7 +59,29 @@
   - <a href="http://chat.mibbit.com/?channel=%23mojo&server=irc.perl.org" target="_blank">#mojo on irc.perl.org</a>
 % end
 
-<!-- TODO: Why port at all? -->
+<section>
+  %= markdown_section begin
+    ## You made a PoC with Lite
+  % end
+  %= markdown_section begin
+    - It works
+    - People like it
+  % end
+  %= markdown_section begin
+    ## Now you need to make it
+
+    - Structured
+    - Maintainable
+    - Understandable
+    - Extensible
+  % end
+  %= markdown_section begin
+    ## You need to grow your Lite app to Full
+  % end
+  <section>
+    <img src="dog_dig.jpg" width="40%">
+  </section>
+</section>
 
 <section>
   <section>

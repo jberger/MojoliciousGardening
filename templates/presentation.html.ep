@@ -68,6 +68,13 @@
     - People like it
   % end
   %= markdown_section begin
+    ## Functionality is good ...
+  % end
+  <section>
+    <h2>... but the container matters</h2>
+    <img src="toilet.jpg">
+  </section>
+  %= markdown_section begin
     ## Now you need to make it
 
     - Structured
@@ -78,9 +85,11 @@
   %= markdown_section begin
     ## You need to grow your Lite app to Full
   % end
-  <section>
-    <img src="dog_dig.jpg" width="40%">
-  </section>
+</section>
+
+<section>
+  <h2>Let's get started</h2>
+  <img src="dog_dig.jpg" width="40%">
 </section>
 
 <section>

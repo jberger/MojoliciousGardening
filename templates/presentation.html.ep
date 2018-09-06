@@ -12,7 +12,7 @@
   <h1>Mojolicious Gardening</h1>
 
   <p>
-    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="unicorn_gnome.jpg"></a>
+    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="img/unicorn_gnome.jpg"></a>
   </p>
 
 </section>
@@ -46,7 +46,7 @@
     - Lite is just a thin wrapper
     - Some tools/strategies for porting
 
-    <img src="zombie.jpg" width="60%">
+    <img src="img/zombie.jpg" width="60%">
   % end
 </section>
 
@@ -72,7 +72,7 @@
   % end
   <section>
     <h2>... but the container matters</h2>
-    <img src="toilet.jpg">
+    <img src="img/toilet.jpg">
   </section>
   %= markdown_section begin
     ## Now you need to make it
@@ -89,7 +89,7 @@
 
 <section>
   <h2>Let's get started</h2>
-  <img src="dog_dig.jpg" width="40%">
+  <img src="img/dog_dig.jpg" width="40%">
 </section>
 
 <section>
@@ -99,7 +99,7 @@
     <div class="fragment">
       <p>What are we growing?</p>
 
-      <img src="Bacon-Roses.jpg" width="40%">
+      <img src="img/Bacon-Roses.jpg" width="40%">
     </div>
   </section>
 
@@ -165,7 +165,7 @@
 
   %= markdown_section begin
     ## Motivation
-    <img src="beer_garden.jpg" width="40%">
+    <img src="img/beer_garden.jpg" width="40%">
   % end
 
   %= markdown_section begin
@@ -306,9 +306,9 @@
       * creates an "inner node"
   % end
   %= section_group none => begin
-    <img width="80%" src="router_lite.svg">
+    <img width="80%" src="img/router_lite.svg">
   <% end, %><% begin %>
-    <img width="80%" src="router_lite_question.svg">
+    <img width="80%" src="img/router_lite_question.svg">
   % end
   %= markdown_section begin
     ## Localized Nested Routing
@@ -318,11 +318,11 @@
       * restores previous router on exit
   % end
   <section>
-    <img width="80%" src="router_lite_group.svg">
+    <img width="80%" src="img/router_lite_group.svg">
   </section>
   <section>
     <h3>Instead use object tree routing</h3>
-    <img src="grumpy_fire.png">
+    <img src="img/grumpy_fire.png">
   </section>
   %= markdown_section begin
     ## Object Tree Routing
@@ -335,7 +335,7 @@
       * conditionally stops router
   % end
   <section>
-    <img width="80%" src="router_full.svg">
+    <img width="80%" src="img/router_full.svg">
     <!-- TODO show with any as inner node -->
   </section>
   %= section_group none => begin
@@ -361,7 +361,7 @@
 <section>
   <section>
     <h2>So now it's time to ...</h2>
-    <img class="fragment" src="grow_dammit.jpg" width="80%">
+    <img class="fragment" src="img/grow_dammit.jpg" width="80%">
   </section>
   %= markdown_section begin
     ## The Full-Hybrid App
@@ -370,7 +370,7 @@
   % end
   <section>
     <h2>... mostly moving stuff</h2>
-    <img src="water_fail.gif" witdh="80%">
+    <img src="img/water_fail.gif" witdh="80%">
   </section>
   %= markdown_section begin
     ## The Full-Hybrid App
@@ -489,7 +489,7 @@
   % end
   %= markdown_section begin
     ### But if you thought I'd stop here ...
-    <img class="fragment" src="wrong_garden.jpg" width="40%">
+    <img class="fragment" src="img/wrong_garden.jpg" width="40%">
   % end
   %= markdown_section begin
     ## Full with Models
@@ -515,7 +515,7 @@
     %= include_sample 'ex/full-model/lib/Pushpin.pm#22-24'
   % end
   <section>
-    <img src="dog_flower.jpg">
+    <img src="img/dog_flower.jpg">
   </section>
   %= section_group none => begin
     <h2>Table Template</h2>
@@ -551,7 +551,7 @@
     - Extract the model (full-model)
   % end
   <section>
-    <img src="this_is_gardening.jpg">
+    <img src="img/this_is_gardening.jpg">
   </section>
 </section>
 

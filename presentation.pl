@@ -4,9 +4,9 @@
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
 
-plugin 'RevealJS';
+app->static->paths(['.']);
 
-push @{ app->static->paths }, '.';
+plugin 'RevealJS';
 
 any '/' => { template => 'presentation', layout => 'revealjs' };
 

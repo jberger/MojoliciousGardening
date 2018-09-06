@@ -69,9 +69,7 @@
   % end
   %= markdown_section begin
     ## Functionality is good ...
-    <div class="fragment">
-      <img src="img/Bacon-Roses.jpg" width="40%">
-    </div>
+    <img src="img/Bacon-Roses.jpg" width="40%">
   % end
   <section>
     <h2>... but the container matters</h2>

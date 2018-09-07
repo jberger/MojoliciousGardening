@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head><base href="/MojoliciousGardening/">
+    
+    
+    
+		<meta charset="utf-8">
+
+    <title></title>
+
+    <meta content="defies description" name="description">
+    <meta content="somebody pretty cool" name="author">
+
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+		<link href="revealjs/css/reveal.css" rel="stylesheet">
+    
+    <link href="revealjs/css/theme/black.css" id="theme" rel="stylesheet">
+
+		<!-- Theme used for syntax highlighting of code -->
+    <link href="github-gist.css" rel="stylesheet">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="revealjs/lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <style>
+  .reveal pre code { padding: 20px }
+  code.hljs.inline {
+    display: initial;
+    font-size: 80%;
+    margin: 0 10px 0 10px;
+  }
+</style>
+
+<section>
+
+  <h1>Mojolicious Gardening</h1>
+
+  <p>
+    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="img/unicorn_gnome.jpg"></a>
+  </p>
+
+</section>
+
+<section>
+
+  <h2>Meta-Slide</h2>
+
+  <ul>
+    <li>I first gave this talk at MojoConf September 2018</li>
+    <li>The talk is hosted at <a href="http://jberger.github.io/MojoliciousGardening" target="_blank">http://jberger.github.io/MojoliciousGardening</a></li>
+    <li>The source is available at <a href="https://github.com/jberger/MojoliciousGardening" target="_blank">https://github.com/jberger/MojoliciousGardening</a></li>
+    <li>All code samples:
+      <ul>
+        <li>are complete and run as shown</li>
+        <li>are included in the repository</li>
+      </ul>
+    </li>
+  </ul>
+
+</section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## TL;DR
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Don't Fear the Full App!
+
+    - Lite is just a thin wrapper
+    - Some tools/strategies for porting
+
+    <img src="img/zombie.jpg" width="60%">
+</script></section></section>
+
+<section data-markdown><script type="text/template">
+  ## Get Help
+
+  - [Growing Guide](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
+  - [2017-12-04 Advent Post](https://mojolicious.io/blog/2017/12/04/day-4-dont-fear-the-full-app/)
+  - [`inflate` Command](http://mojolicious.org/perldoc/Mojolicious/Command/inflate)
+  - <a href="http://chat.mibbit.com/?channel=%23mojo&server=irc.perl.org" target="_blank">#mojo on irc.perl.org</a>
+</script></section>
+<section>
+  <section data-markdown><script type="text/template">
+    ## You made a PoC with Lite
+</script></section>  <section data-markdown><script type="text/template">
+    - It works
+    - People like it
+</script></section>  <section data-markdown><script type="text/template">
+    ## Functionality is good ...
+    <img src="img/Bacon-Roses.jpg" width="40%">
+</script></section>  <section>
+    <h2>... but the container matters</h2>
+    <img src="img/toilet.jpg">
+  </section>
+  <section data-markdown><script type="text/template">
+    ## Now you need to make it
+
+    - Structured
+    - Maintainable
+    - Understandable
+    - Extensible
+</script></section>  <section data-markdown><script type="text/template">
+    ## You need to grow your Lite app to Full
+</script></section></section>
+
+<section data-transition="zoom-in">
+
+  <h1>Mojolicious Gardening</h1>
+
+  <p>
+    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="img/unicorn_gnome.jpg"></a>
+  </p>
+
+</section>
+
+<section>
+  <h2>Let&#39;s get started</h2>
+  <img src="img/dog_dig.jpg" width="40%">
+</section>
+
+<section>
+  <section>
+    <h2>Components</h2>
+  </section>
+
+  <section data-markdown><script type="text/template">
+    ## The Perl Application
+
+    - Script
+    - App module
+    - Controllers
+    - Models
+
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## App Keywords
+
+    - app
+    - helper
+    - hook
+    - plugin
+
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Routing Keywords
+
+    - any
+    - get
+    - post
+    - put
+    - patch
+    - del (as delete)
+    - options
+    - websocket
+
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Nested routing keywords
+
+    - under
+    - group
+
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Supporting Files
+
+    - templates
+    - static files
+
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Tests
+
+    - Just the app loader
+</script></section></section>
+
+<section>
+
+
+  <section data-markdown><script type="text/template">
+    ## Motivation
+    <img src="img/beer_garden.jpg" width="40%">
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Motivation
+
+    - Example App / Live Demo!
+    - <https://demo.jberger.pl>
+      * During the live presentation only
+      * Included in the repository
+    - Port to Full App
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Porting States
+
+    - Lite
+    - Lite-Hybrid
+    - Full-Hybrid
+    - Full
+    - Full with Models
+</script></section>
+  <section>
+    <h2>Pushpin Application</h2>
+
+        <pre><code data-sample="ex/lite/pushpin.pl"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#5-10"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#12-13"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#154-161"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#14-22"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#24-29"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section data-transition="none-out">
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in none-out">
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45" data-sample-mark="3"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in none-out">
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45" data-sample-mark="4-5"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in none-out">
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45" data-sample-mark="6"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in">
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45" data-sample-mark="1,15"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+</section>
+  <section>
+        <pre><code data-sample="ex/lite/pushpin.pl#47-51"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+
+  <section data-markdown><script type="text/template">
+    ## `__DATA__` Files
+
+    - pushpin.js
+    - map.html.ep
+    - table.html.ep
+    - layouts/main.html.ep
+    - migrations
+</script></section></section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## Before The Move
+
+    ### The Lite-Hybrid App
+</script></section>
+  <section data-markdown><script type="text/template">
+    ## Purpose
+
+    - Transition away from the DSL
+    - Prepare for moving to Full
+</script></section>
+  <section>
+    <h3>Add two new variables</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#5,26"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+  </section>
+
+  <section data-transition="none-out">
+    <h3> Helper keyword ...</h3>
+        <pre><code data-sample="ex/lite/pushpin.pl#14-22"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in">
+    <h3>... becomes helper method</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#16-24"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+</section>
+  <!-- TODO: mention hybrid routes taking same arguments as keyword form -->
+  <section data-transition="none-out">
+    <h3>And toplevel routes ...</h3>
+        <pre><code data-sample="ex/lite/pushpin.pl#24-29"></code></pre>
+
+        <pre><code data-sample="ex/lite/pushpin.pl#47-51"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in">
+    <h3>... are created by router methods</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#28-33"></code></pre>
+
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#49-53"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+</section></section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## About Nested Routing
+
+    - routes are a tree
+    - routing keywords (except under/group)
+      * add routes to the current router
+      * are all "leaf nodes"
+</script></section>  <section data-markdown><script type="text/template">
+    ## Nested Routing
+
+    - `under` keyword
+      * share code between routes
+      * conditionally stops router
+      * replaces the current router
+      * creates an "inner node"
+</script></section>  <section data-transition="none-out">
+    <img src="img/router_lite.svg" width="80%">
+  </section>
+<section data-transition="none-in">
+    <img src="img/router_lite_question.svg" width="80%">
+</section>  <section data-markdown><script type="text/template">
+    ## Localized Nested Routing
+
+    - `group` keyword
+      * localizes the effect of `under`
+      * restores previous router on exit
+</script></section>  <section>
+    <img src="img/router_lite_group.svg" width="80%">
+  </section>
+  <section>
+    <img src="img/grumpy_fire.png">
+    <h3 class="fragment">Use object tree routing instead</h3>
+  </section>
+  <section data-markdown><script type="text/template">
+    ## Object Tree Routing
+
+    - routes build off others
+    - All router methods with children
+      * create "inner node"s
+    - `under`
+      * share code between routes
+      * conditionally stops router
+</script></section>  <section>
+    <img src="img/router_full.svg" width="80%">
+    <!-- TODO show with any as inner node -->
+  </section>
+  <section data-transition="none-out">
+    <h3>The Grouped Lite Routes Become ...</h3>
+        <pre><code data-sample="ex/lite/pushpin.pl#31-45"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h3>... A Proper Object Tree</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#35-47"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h3>... A Proper Object Tree</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#35-47" data-sample-mark="1"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+  </section>
+<section data-transition="none-in">
+    <h3>... A Proper Object Tree</h3>
+        <pre><code data-sample="ex/lite-hybrid/pushpin.pl#35-47" data-sample-mark="8,10"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+</section></section>
+
+<section>
+  <h2>The Final Lite-Hybrid Script</h2>
+      <pre><code data-sample="ex/lite-hybrid/pushpin.pl"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/lite-hybrid/pushpin.pl</p>
+
+</section>
+
+<section>
+  <section>
+    <h2>So now it&#39;s time to ...</h2>
+    <img class="fragment" src="img/grow_dammit.jpg" width="80%">
+  </section>
+  <section data-markdown><script type="text/template">
+    ## The Full-Hybrid App
+
+    - Easy because of the lite-hybrid step
+</script></section>  <section>
+    <h2>... mostly moving stuff</h2>
+    <img src="img/water_fail.gif" witdh="80%">
+  </section>
+  <section data-markdown><script type="text/template">
+    ## The Full-Hybrid App
+
+    - Easy because of the lite-hybrid step
+    - Split out supporting files
+    - Split script
+      * app logic to a module
+      * a dummy script
+    - Still uses hybrid routes
+</script></section>  <section data-markdown><script type="text/template">
+    ## Supporting Files
+
+    - Use the [`inflate`](https://mojolicious.org/perldoc/Mojolicious/Command/inflate) command
+    - Or manually move files
+      * static files in `public/`
+      * templates in `templates/`
+</script></section>  <section data-markdown><script type="text/template">
+    ## Supporting Files
+
+    - public/pushpin.js
+    - templates/map.html.ep
+    - templates/table.html.ep
+    - templates/layouts/main.html.ep
+</script></section>  <section data-markdown><script type="text/template">
+    ## The Application Class
+
+    - Move pushpin.pl to lib/Pushpin.pm
+    - Package inherits from `Mojolicious`
+    - Replace `app->start` with `1;`
+    - Wrap logic in `sub startup ($app) { }`
+      * Remove `my $app = app;`
+    - Migrations can stay in `__DATA__`
+</script></section>  <section>
+        <pre><code data-sample="ex/full-hybrid/lib/Pushpin.pm"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-hybrid/lib/Pushpin.pm</p>
+
+  </section>
+  <section data-markdown><script type="text/template">
+    ## The Application Script
+
+    - In `script/` directory
+    - A dummy script to load the class
+    - Take the one from the end of the [Growing Guide](https://mojolicious.org/perldoc/Mojolicious/Guides/Growing#Script)
+      * Just change the class name
+</script></section>  <section data-transition="none-out">
+        <pre><code class="lang-perl" data-sample="ex/full-hybrid/script/pushpin"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-hybrid/script/pushpin</p>
+
+  </section>
+<section data-transition="none-in">
+        <pre><code class="lang-perl" data-sample="ex/full-hybrid/script/pushpin" data-sample-mark="11"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-hybrid/script/pushpin</p>
+
+</section></section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## The Full App
+
+    - Controller classes
+    - Routes point to controllers
+    - Application attributes
+    - Some helpers can be controller methods
+    - Templates in per-controller directories
+</script></section>  <section data-transition="none-out">
+    <h2>Routes Point to Controllers</h2>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm#27-35"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+  </section>
+<section data-transition="none-in">
+    <h2>Routes Point to Controllers</h2>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm#27-35" data-sample-mark="5,6"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+</section>  <section data-transition="none-out">
+    <h2>App Attribute</h2>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm#6-11"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+  </section>
+<section data-transition="none-in">
+    <h2>App Attribute</h2>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm#6-11" data-sample-mark="2"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+</section>  <section>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+  </section>
+</section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## Controller Classes
+</script></section>  <section data-transition="none-out">
+    <h3>Admin Controller</h3>
+        <pre><code data-sample="ex/full/lib/Pushpin/Controller/Admin.pm#5-19"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin/Controller/Admin.pm</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h3>Admin Controller</h3>
+        <pre><code data-sample="ex/full/lib/Pushpin/Controller/Admin.pm#5-19" data-sample-mark="3"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin/Controller/Admin.pm</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h3>Admin Controller</h3>
+        <pre><code data-sample="ex/full/lib/Pushpin/Controller/Admin.pm#5-19" data-sample-mark="11"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin/Controller/Admin.pm</p>
+
+  </section>
+<section data-transition="none-in">
+    <h3>Admin Controller</h3>
+        <pre><code data-sample="ex/full/lib/Pushpin/Controller/Admin.pm#5-19" data-sample-mark="6,9"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin/Controller/Admin.pm</p>
+
+</section>  <section>
+    <h3>Pins Controller</h3>
+        <pre><code data-sample="ex/full/lib/Pushpin/Controller/Pins.pm#5-19"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin/Controller/Pins.pm</p>
+
+  </section>
+  <section data-markdown><script type="text/template">
+    ## Supporting Files
+
+    - public/pushpin.js
+    - templates/pins/map.html.ep
+    - templates/pins/table.html.ep
+    - templates/layouts/main.html.ep
+</script></section></section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## Technically, You're Done!
+</script></section>  <section data-markdown><script type="text/template">
+    ### But if you thought I'd stop here ...
+    <img class="fragment" src="img/wrong_garden.jpg" width="40%">
+</script></section>  <section data-markdown><script type="text/template">
+    ## Full with Models
+</script></section>  <section data-transition="none-out">
+    <h2>Model Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Model/Pins.pm"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Model/Pins.pm</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h2>Model Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Model/Pins.pm" data-sample-mark="5"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Model/Pins.pm</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h2>Model Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Model/Pins.pm" data-sample-mark="7"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Model/Pins.pm</p>
+
+  </section>
+<section data-transition="none-in">
+    <h2>Model Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Model/Pins.pm"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Model/Pins.pm</p>
+
+</section>  <section data-transition="none-out">
+    <h2>Model Helpers</h2>
+        <pre><code data-sample="ex/full/lib/Pushpin.pm#21-23"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/lib/Pushpin.pm</p>
+
+  </section>
+<section data-transition="none-in">
+    <h2>Model Helper</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin.pm#22-24"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin.pm</p>
+
+</section>  <section>
+    <img src="img/dog_flower.jpg">
+  </section>
+  <section data-transition="none-out">
+    <h2>Table Template</h2>
+        <pre><code data-sample="ex/full/templates/pins/table.html.ep#3-16"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/templates/pins/table.html.ep</p>
+
+  </section>
+<section data-transition="none-in none-out">
+    <h2>Table Template</h2>
+        <pre><code data-sample="ex/full/templates/pins/table.html.ep#3-16" data-sample-mark="2"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full/templates/pins/table.html.ep</p>
+
+  </section>
+<section data-transition="none-in">
+    <h2>Table Template</h2>
+        <pre><code data-sample="ex/full-model/templates/pins/table.html.ep#3-16" data-sample-mark="2"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/templates/pins/table.html.ep</p>
+
+</section>  <section>
+    <h2>Controller Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Controller/Pins.pm#19"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Controller/Pins.pm</p>
+
+  </section>
+  <section>
+    <h2>Controller Class</h2>
+        <pre><code data-sample="ex/full-model/lib/Pushpin/Controller/Pins.pm#5-19"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/lib/Pushpin/Controller/Pins.pm</p>
+
+  </section>
+</section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## Wow, that was a lot!
+</script></section>  <section data-markdown><script type="text/template">
+    ## Remember Each Step
+
+    - Prototype (lite)
+    - Remove the DSL (lite-hybrid)
+    - Split application, script, files (full-hybrid)
+    - Extract the controllers (full)
+    - Extract the model (full-model)
+</script></section>  <section>
+    <img src="img/this_is_gardening.jpg">
+  </section>
+
+  <section data-markdown><script type="text/template">
+    ## Any Questions?
+</script></section></section>
+
+<section>
+  <section data-markdown><script type="text/template">
+    ## Bonus Slides!
+</script></section>  <section data-markdown><script type="text/template">
+    ## The Joys of Modern Javascript
+</script></section>  <section>
+        <pre><code class="lang-html" data-sample="ex/full-model/templates/pins/map.html.ep#7-11"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/templates/pins/map.html.ep</p>
+
+  </section>
+  <section>
+        <pre><code data-sample="ex/full-model/public/pushpin.js#1-4"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/public/pushpin.js</p>
+
+  </section>
+  <section>
+        <pre><code data-sample="ex/full-model/public/pushpin.js#49-51"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/public/pushpin.js</p>
+
+  </section>
+  <section>
+        <pre><code data-sample="ex/full-model/public/pushpin.js#34-47"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/public/pushpin.js</p>
+
+  </section>
+  <section>
+        <pre><code data-sample="ex/full-model/public/pushpin.js#16-29"></code></pre>
+    <p class="sample-annotation" style="float: right; text-color: white; font-size: small;">ex/full-model/public/pushpin.js</p>
+
+  </section>
+</section>
+
+<section data-markdown><script type="text/template">
+  ## Thank you!
+</script></section>
+			</div>
+
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.js"></script>
+
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+      
+      var init = {"center":true,"controls":true,"history":true,"progress":true,"transition":"slide"};
+			// Optional reveal.js plugins
+      init.dependencies = [
+        { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'revealjs/plugin/zoom-js/zoom.js', async: true },
+        { src: 'revealjs/plugin/notes/notes.js', async: true },
+        { src: 'reveal-sampler/sampler.js' }
+      ];
+
+      
+			Reveal.initialize(init);
+
+		</script>
+
+    
+	</body>
+</html>

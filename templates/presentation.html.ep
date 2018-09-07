@@ -25,7 +25,7 @@
     <li>I first gave this talk at MojoConf September 2018</li>
     <li>The talk is hosted at <a href="http://jberger.github.io/MojoliciousGardening" target="_blank">http://jberger.github.io/MojoliciousGardening</a></li>
     <li>The source is available at <a href="https://github.com/jberger/MojoliciousGardening" target="_blank">https://github.com/jberger/MojoliciousGardening</a></li>
-    <li>All code samples and all tests:
+    <li>All code samples:
       <ul>
         <li>are complete and run as shown</li>
         <li>are included in the repository</li>
@@ -86,6 +86,16 @@
   %= markdown_section begin
     ## You need to grow your Lite app to Full
   % end
+</section>
+
+<section data-transition="zoom-in">
+
+  <h1>Mojolicious Gardening</h1>
+
+  <p>
+    <a href="http://mojolicio.us" target="_blank"><img height="200px" src="img/unicorn_gnome.jpg"></a>
+  </p>
+
 </section>
 
 <section>
@@ -316,8 +326,8 @@
     <img width="80%" src="img/router_lite_group.svg">
   </section>
   <section>
-    <h3>Instead use object tree routing</h3>
     <img src="img/grumpy_fire.png">
+    <h3 class="fragment">Use object tree routing instead</h3>
   </section>
   %= markdown_section begin
     ## Object Tree Routing
@@ -462,7 +472,10 @@
     %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => 3
   <% end, %><% begin %>
     <h3>Admin Controller</h3>
-    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => '6,9,11'
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => '11'
+  <% end, %><% begin %>
+    <h3>Admin Controller</h3>
+    %= include_sample 'ex/full/lib/Pushpin/Controller/Admin.pm#5-19', mark => '6,9'
   % end
   <section>
     <h3>Pins Controller</h3>
@@ -548,6 +561,10 @@
   <section>
     <img src="img/this_is_gardening.jpg">
   </section>
+
+  %= markdown_section begin
+    ## Any Questions?
+  % end
 </section>
 
 <section>
@@ -574,3 +591,6 @@
   </section>
 </section>
 
+%= markdown_section begin
+  ## Thank you!
+% end

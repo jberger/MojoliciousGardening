@@ -8,7 +8,11 @@ app->static->paths(['.']);
 
 plugin 'RevealJS';
 
-any '/' => { template => 'presentation', layout => 'revealjs' };
+any '/' => {
+  template => 'presentation',
+  layout => 'revealjs',
+  hljs_theme_url => 'github-gist.css',
+};
 
 helper markdown_fragment => sub {
   my ($c, $num) = @_;
